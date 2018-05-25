@@ -17,8 +17,7 @@
 
 // the keyboard registor
 // volatile tells c compiler that the variable is changed otuside of our code
-volatile u32* KEYS = (volatile u32*)0x04000130;
-//int* KEYS = (int*)0x04000130;
+vu32* KEYS = (vu32*)0x04000130;
 
 #endif
 

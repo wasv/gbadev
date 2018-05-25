@@ -1,4 +1,5 @@
 #include "gba.h"
+#include "screenmode.h"
 
 #define RGB15(r,g,b) ((u16)(b << 10) | (g << 5) | r)
 
@@ -11,7 +12,7 @@ static inline void vid_vsync()
 int main(void)
 {
 	// Write into the I/O registers, setting video display parameters.
-	REG_DISPCNT_L = 0x0403; // Use video mode 3 (in BG2, a 16bpp bitmap in VRAM)
+	SetMode(BG2_ENABLE | MODE_3); // Use video mode 3 (in BG2, a 16bpp bitmap in VRAM)
 
 	u8 fn = 0;
 	u8 blink = 0;
