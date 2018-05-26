@@ -4,6 +4,7 @@ CFLAGS 	 = -O3
 CFLAGS  += -mthumb -mthumb-interwork
 LDFLAGS  = --specs=gba.specs
 LDFLAGS += $(CFLAGS)
+
 all : $(TARGET).gba
 
 %.gba : %.elf

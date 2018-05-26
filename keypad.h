@@ -4,6 +4,7 @@
 
 #include "gba.h"
 
+#define KEY_ANY 0x03FF
 #define KEY_A 1
 #define KEY_B 2
 #define KEY_SELECT 4
@@ -14,6 +15,8 @@
 #define KEY_DOWN 128
 #define KEY_R 256
 #define KEY_L 512
+
+#define KeyPressed(k) (~(*KEYS) & (k))
 
 // the keyboard registor
 // volatile tells c compiler that the variable is changed otuside of our code
