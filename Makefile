@@ -1,5 +1,5 @@
 TARGET  := mygame
-SOURCES  = main.c
+SOURCES  = src/main.c src/gfx/sprite.c
 CFLAGS 	 = -O3
 CFLAGS  += -mthumb -mthumb-interwork
 LDFLAGS  = --specs=gba.specs

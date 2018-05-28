@@ -1,30 +1,21 @@
 // gba.h by eloist 
+// Modified 18-05-27 by wasv
 
 #ifndef GBA_HEADER
 #define GBA_HEADER
 
-typedef volatile unsigned char  vu8;
-typedef volatile unsigned short vu16;
-typedef volatile unsigned long  vu32;
+#include "tonc.h"
 
-typedef unsigned char  u8;
-typedef unsigned short u16;
-typedef unsigned long  u32;
+// Memory Regions
 
-typedef signed char  s8;
-typedef signed short s16;
-typedef signed long  s32;
+#define OAMmem         (u32*)MEM_OAM
+#define VideoBuffer    (u16*)MEM_VRAM
+#define OAMdata		   (u16*)MEM_VRAM_OBJ
+#define BGPaletteMem   (u16*)MEM_PAL
+#define OBJPaletteMem  (u16*)MEM_PAL_OBJ
 
-typedef unsigned char  byte;
-typedef unsigned short hword;
-typedef unsigned long  word;
+// Registers
 
-#define OAMmem         (u32*)0x7000000
-#define VideoBuffer    (u16*)0x6000000
-#define OAMdata		   (u16*)0x6100000
-#define BGPaletteMem   (u16*)0x5000000
-#define OBJPaletteMem  (u16*)0x5000200
-		
 #define REG_INTERUPT   *(vu32*)0x3007FFC
 #define REG_DISPCNT    *(vu32*)0x4000000
 #define REG_DISPCNT_L  *(vu16*)0x4000000
@@ -179,5 +170,12 @@ typedef unsigned long  word;
 #define REG_WSCNT      *(vu16*)0x4000204
 #define REG_IME        *(vu16*)0x4000208
 #define REG_PAUSE      *(vu16*)0x4000300
+
+// Inline fns
+static inline void vid_vsync()
+{
+	while(REG_VCOUNT < 160);	// wait till VBlank
+	while(REG_VCOUNT >= 160);	// wait till VDraw
+}
 
 #endif
