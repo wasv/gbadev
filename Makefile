@@ -1,5 +1,6 @@
 -include res/rules.mak
 
+CFLAGS += -g
 LDFLAGS += -T res/gba_cart.ld
 
 TARGET  := mygame
