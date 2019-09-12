@@ -10,7 +10,7 @@ _start:
 @---------------------------------------------------------------------------------
 	b	rom_header_end
 
-	.incbin "nintendo.bin"	@ Nintendo Logo Character Data (8000004h)
+	.incbin "res/nintendo.bin"	@ Nintendo Logo Character Data (8000004h)
 	.fill	16,1,0			@ Game Title
 	.byte   0x30,0x31		@ Maker Code (80000B0h)
 	.byte   0x96			@ Fixed Value (80000B2h)
