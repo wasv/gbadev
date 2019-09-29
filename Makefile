@@ -1,5 +1,9 @@
 -include res/rules.mak
 
+REV := 0
+MAKER := 01
+GAME := MYGM
+
 CFLAGS += -g
 LDFLAGS += -T res/gba_cart.ld
 
@@ -13,6 +17,7 @@ all : build/$(TARGET).gba
 %.gba : %.elf
 	@mkdir -p $(@D)
 	$(OBJCOPY) -O binary $^ $@
+	$(GBAFIX) $@ -t$(TARGET) -m$(MAKER) -c$(GAME) -r$(REV)
 
 %.elf : $(OBJS) $(GCCLIB)/crtbegin.o $(GCCLIB)/crtend.o $(GCCLIB)/crti.o $(GCCLIB)/crtn.o
 	@mkdir -p $(@D)

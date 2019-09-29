@@ -1,4 +1,3 @@
-
 GCC_VERSION = $(shell arm-none-eabi-gcc --version | grep -o '[0-9]*\.[0-9]*\.[0-9]*' | head -n1)
 
 CROSS   := arm-none-eabi-
@@ -6,6 +5,7 @@ AS      := $(CROSS)as
 CC      := $(CROSS)gcc
 LD      := $(CROSS)ld
 OBJCOPY := $(CROSS)objcopy
+GBAFIX  := gbafix
 
 ARMINC = /usr/arm-none-eabi/include
 ARMLIB = /usr/arm-none-eabi/lib
