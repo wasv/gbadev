@@ -11,7 +11,7 @@ TARGET  := mygame
 SOURCES  = res/gba_crt0.s $(shell find src/ -name "*.c")
 OBJS = $(patsubst %,build/%.o,$(SOURCES))
 
-.PHONY: all
+.PHONY: all run clean
 all : build/$(TARGET).gba
 
 %.gba : %.elf
@@ -31,6 +31,9 @@ build/%.c.o: %.c
 build/%.s.o: %.s
 	@mkdir -p $(@D)
 	$(AS) $(MODEL) -c $^ -o $@
+
+run: build/$(TARGET).gba
+	vbam $^
 
 clean:
 	rm -rf build
