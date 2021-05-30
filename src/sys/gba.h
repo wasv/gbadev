@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "common.h"
 #include "bitwise.h"
-#include "gfx.h"
+#include "common.h"
 #include "dma.h"
-#include "timer.h"
+#include "gfx.h"
 #include "input.h"
+#include "timer.h"

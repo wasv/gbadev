@@ -3,13 +3,13 @@
 #include <stdint.h>
 
 //! Force a variable to an \a n-byte boundary
-#define ALIGN(n)	__attribute__((aligned(n)))
+#define ALIGN(n) __attribute__((aligned(n)))
 
 //! Pack aggregate members
-#define PACKED		__attribute__((packed))
+#define PACKED __attribute__((packed))
 
 #ifndef NULL
-#define NULL (void*)0
+#define NULL (void *)0
 #endif
 
 #ifndef __cplusplus
@@ -22,4 +22,3 @@ typedef uint8_t BOOL;
 #define TRUE 1
 #define FALSE 0
 #endif
-

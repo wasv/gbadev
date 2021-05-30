@@ -3,7 +3,7 @@
 
 //======================================================================
 //
-//	sprite, 32x32@4, 
+//	sprite, 32x32@4,
 //	+ palette 16 entries, not compressed
 //	+ 16 tiles not compressed
 //	Total size: 32 + 512 = 544
