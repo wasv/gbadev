@@ -1,4 +1,5 @@
 #include "gfx.h"
+#include "bitwise.h"
 
 // === Global struct instances
 palette_t *pal_bg_bank = (palette_t *)MEM_PAL;
@@ -16,10 +17,7 @@ obj_affine_t *obj_affine = (obj_affine_t *)MEM_OAM;
 
 // === Helper fns
 void vid_vsync() {
-    while (REG_VCOUNT < 160)
-        ; // wait till VBlank
-    while (REG_VCOUNT >= 160)
-        ; // wait till VDraw
+    while(REG_DISPSTAT & BIT(0));
 }
 
 //! Initialize an array of count OBJ_ATTRs with with safe values.
