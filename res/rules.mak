@@ -7,11 +7,11 @@ LD      := $(CROSS)ld
 OBJCOPY := $(CROSS)objcopy
 GBAFIX  := gbafix
 
-ARMINC = /usr/arm-none-eabi/include
-ARMLIB = /usr/arm-none-eabi/lib
-GCCLIB = /usr/lib/gcc/arm-none-eabi/$(GCC_VERSION)
+ARMINC 	 = /usr/arm-none-eabi/include
+ARMLIB 	 = /usr/arm-none-eabi/lib
+GCCLIB 	 = /usr/lib/gcc/arm-none-eabi/$(GCC_VERSION)
 
-CFLAGS   += -Wall -Werror -pedantic -Wextra
+CFLAGS  += -Wall -Werror -pedantic -Wextra
 
 MODEL    = -mthumb-interwork -mthumb
 

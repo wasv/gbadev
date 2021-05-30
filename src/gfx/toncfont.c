@@ -9,12 +9,10 @@
 //	( http://www.coranac.com/projects/#grit )
 //
 //======================================================================
-#include "gba.h"
-
-const u32 cursorTile[8]= 
+const unsigned int cursorTile[8]= 
 {  0x0, 0x21, 0x211, 0x2111, 0x21111, 0x2100, 0x1100, 0x21000 };
 
-const u32 toncfontTiles[192] __attribute__((aligned(4))) __attribute__((visibility("hidden")))=
+const unsigned int toncfontTiles[192] __attribute__((aligned(4))) __attribute__((visibility("hidden")))=
 {
 	0x00000000,0x00000000,0x18181818,0x00180018,0x00003636,0x00000000,0x367F3636,0x0036367F,
 	0x3C067C18,0x00183E60,0x1B356600,0x0033566C,0x6E16361C,0x00DE733B,0x000C1818,0x00000000,
