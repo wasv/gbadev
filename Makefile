@@ -1,42 +1,31 @@
--include res/rules.mak
+O := build
 
 REV := 0
 MAKER := 01
 GAME := MYGM
+TARGET := mygame
 
-CFLAGS += -g
-LDFLAGS += -T res/gba_cart.ld
+CSRC  = $(shell find src/ -name "*.c")
+SSRC  = $(shell find src/ -name "*.s")
+OBJS = $(patsubst %,$(O)/%.o,$(CSRC) $(SSRC))
 
-TARGET  := mygame
-CSOURCES  = $(shell find src/ -name "*.c")
-SSOURCES  = $(shell find src/ -name "*.s")
-OBJS = $(patsubst %,build/%.o,$(CSOURCES) $(SSOURCES))
+CFLAGS 	+= -O3 -g
+CFLAGS += -Wall -Werror -pedantic -Wextra
+
+GBASYS_DIR=sys
+include sys/gbasys.mak
 
 .PHONY: all run clean
-all : build/$(TARGET).gba
 
-%.gba : %.elf
-	@mkdir -p $(@D)
-	$(OBJCOPY) -O binary $< $@
-	$(GBAFIX) $@ -t$(TARGET) -m$(MAKER) -c$(GAME) -r$(REV)
+all: $(O)/$(TARGET).gba
 
-%.elf : $(OBJS) $(GCCLIB)/crtbegin.o $(GCCLIB)/crtend.o $(GCCLIB)/crti.o $(GCCLIB)/crtn.o
-	@mkdir -p $(@D)
-	$(LD) $(LDFLAGS) -o $@ $^ -lgcc -lc
-
-
-build/%.c.o: %.c
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $< -o $@
-
-build/%.s.o: %.s
-	@mkdir -p $(@D)
-	$(AS) $(MODEL) -c $< -o $@
-
-run: build/$(TARGET).gba
+run: $(O)/$(TARGET).gba
 	vbam $<
 
-clean:
-	rm -rf build
+$(LIBGBASYS): $(GBASYS_DIR)/Makefile
+	$(MAKE) -C $(GBASYS_DIR) O=$(PWD)/$(@D)
 
--include $(patsubst %,build/%.d,$(CSOURCES))
+clean:
+	rm -rf $(O)
+
+-include $(patsubst %,$(O)/%.d,$(CSRC))

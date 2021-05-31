@@ -1,5 +1,5 @@
+#include "gba.h"
 #include "gfx/sprite.h"
-#include "sys/gba.h"
 
 #include <string.h>
 
