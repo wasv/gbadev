@@ -12,6 +12,8 @@ OBJS = $(patsubst %,$(O)/%.o,$(CSRC) $(SSRC))
 CFLAGS 	+= -O3 -g
 CFLAGS += -Wall -Werror -pedantic -Wextra
 
+.DEFAULT_GOAL := all
+
 GBASYS_DIR=sys
 include sys/gbasys.mak
 
