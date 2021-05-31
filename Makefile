@@ -15,6 +15,7 @@ CFLAGS += -Wall -Werror -pedantic -Wextra
 GBASYS_DIR=sys
 include sys/gbasys.mak
 
+.SECONDARY:
 .PHONY: all run clean
 
 all: $(O)/$(TARGET).gba
