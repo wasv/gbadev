@@ -8,4 +8,5 @@
 #include "dma.h"
 #include "gfx.h"
 #include "input.h"
+#include "isr.h"
 #include "timer.h"

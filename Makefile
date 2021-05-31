@@ -8,7 +8,7 @@ CFLAGS += -g
 LDFLAGS += -T res/gba_cart.ld
 
 TARGET  := mygame
-SOURCES  = res/gba_crt0.s $(shell find src/ -name "*.c")
+SOURCES  = $(shell find src/ -name "*.c" -or -name "*.s")
 OBJS = $(patsubst %,build/%.o,$(SOURCES))
 
 .PHONY: all run clean

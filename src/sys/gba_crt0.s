@@ -1,4 +1,4 @@
-	.section	".crt0","ax"
+        .section	".crt0","ax"
 	.global     _start
 	.align
 
@@ -68,6 +68,9 @@ start_vector:
 	bx	r0
 
 	.thumb
+    ldr     r1, =__irq_vec  @ Set Interrupt Address
+    ldr     r0, =ISR
+    str     r0, [r1]
 
 	ldr	r0, =__text_start
 	lsl	r0, #5				@ Was code compiled at 0x08000000 or higher?
@@ -246,4 +249,3 @@ CIDExit:
 	.align
 	.pool
 	.end
-
