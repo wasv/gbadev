@@ -8,15 +8,16 @@ CFLAGS += -g
 LDFLAGS += -T res/gba_cart.ld
 
 TARGET  := mygame
-SOURCES  = $(shell find src/ -name "*.c" -or -name "*.s")
-OBJS = $(patsubst %,build/%.o,$(SOURCES))
+CSOURCES  = $(shell find src/ -name "*.c")
+SSOURCES  = $(shell find src/ -name "*.s")
+OBJS = $(patsubst %,build/%.o,$(CSOURCES) $(SSOURCES))
 
 .PHONY: all run clean
 all : build/$(TARGET).gba
 
 %.gba : %.elf
 	@mkdir -p $(@D)
-	$(OBJCOPY) -O binary $^ $@
+	$(OBJCOPY) -O binary $< $@
 	$(GBAFIX) $@ -t$(TARGET) -m$(MAKER) -c$(GAME) -r$(REV)
 
 %.elf : $(OBJS) $(GCCLIB)/crtbegin.o $(GCCLIB)/crtend.o $(GCCLIB)/crti.o $(GCCLIB)/crtn.o
@@ -26,14 +27,16 @@ all : build/$(TARGET).gba
 
 build/%.c.o: %.c
 	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) -c $^ -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 build/%.s.o: %.s
 	@mkdir -p $(@D)
-	$(AS) $(MODEL) -c $^ -o $@
+	$(AS) $(MODEL) -c $< -o $@
 
 run: build/$(TARGET).gba
-	vbam $^
+	vbam $<
 
 clean:
 	rm -rf build
+
+-include $(patsubst %,build/%.d,$(CSOURCES))
