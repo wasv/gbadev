@@ -15,8 +15,8 @@ int main(void) {
     int16_t sprite_y = 45;
 
     // Initialize tile and pallete data.
-    memcpy(&tile4_obj[512], spriteTiles, spriteTilesLen);
-    memcpy(&pal_obj_bank[0], spritePal, spritePalLen);
+    memcpy(&tile4_obj[sprite_id], spriteTiles, spriteTilesLen);
+    memcpy(&pal_obj_bank[sprite_pallete], spritePal, spritePalLen);
 
     // Initialize all sprites
     oam_init(128);
